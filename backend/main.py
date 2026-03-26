@@ -6,6 +6,8 @@ Real backend with SQLite database for user authentication and data storage
 from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
 from datetime import datetime, timedelta
@@ -13,8 +15,13 @@ import sqlite3
 import hashlib
 import secrets
 import os
+from pathlib import Path
 
 app = FastAPI(title="TravelSync API", version="1.0.0")
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
+ASSETS_DIR = BASE_DIR / "assets"
 
 # CORS middleware
 app.add_middleware(
@@ -389,11 +396,13 @@ def health_check():
 
 @app.get("/")
 def root():
-    return {
-        "message": "Welcome to TravelSync API",
-        "docs": "/docs",
-        "health": "/api/health"
-    }
+    return RedirectResponse(url="/frontend/html/mainpage.html")
+
+if FRONTEND_DIR.exists():
+    app.mount("/frontend", StaticFiles(directory=str(FRONTEND_DIR)), name="frontend")
+
+if ASSETS_DIR.exists():
+    app.mount("/assets", StaticFiles(directory=str(ASSETS_DIR)), name="assets")
 
 if __name__ == "__main__":
     import uvicorn

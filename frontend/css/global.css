@@ -652,3 +652,92 @@ body.centered {
 }
 
 /*Global file*/
+
+/* ================= LIGHT BLUE THEME OVERRIDES ================= */
+
+:root {
+    --primary: #1d6fdc;
+    --primary-dark: #1a59c4;
+    --bg-gradient: linear-gradient(180deg, #f8fbff 0%, #e8f2ff 100%);
+}
+
+body {
+    color: #12304f;
+}
+
+.card,
+.empty-state-card {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(29, 111, 220, 0.12);
+    box-shadow: 0 14px 36px rgba(29, 111, 220, 0.12);
+}
+
+.top-bar {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid rgba(29, 111, 220, 0.1);
+}
+
+.top-bar .brand-title,
+.card-username,
+.card-title,
+.people-name,
+.trip-plan-card .destination,
+.empty-state-card h3 {
+    color: #12304f;
+    text-shadow: none;
+}
+
+.location-indicator,
+.card-meta,
+.card-description,
+.legend-teaser,
+.people-bio,
+.trip-dates,
+.empty-state-card p,
+.picture-comments {
+    color: #5d7693;
+    opacity: 1;
+}
+
+.icon-btn,
+.tab-btn,
+.trip-purpose,
+.card-detail-item,
+.people-distance,
+.interest-tag,
+.open-to-join.no {
+    background: #eef5ff;
+    color: #1d6fdc;
+    border: 1px solid rgba(29, 111, 220, 0.12);
+}
+
+.icon-btn:hover,
+.tab-btn:hover {
+    background: #ddeeff;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 10px 22px rgba(29, 111, 220, 0.22);
+}
+
+.btn-secondary {
+    background: #eef5ff;
+    color: var(--primary);
+    border: 1px solid rgba(29, 111, 220, 0.14);
+}
+
+.link-text {
+    color: var(--primary);
+}
+
+.bottom-nav {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 -8px 30px rgba(29, 111, 220, 0.12);
+}
+
+.toast-notification {
+    background: rgba(18, 48, 79, 0.94);
+    box-shadow: 0 12px 30px rgba(29, 111, 220, 0.22);
+}

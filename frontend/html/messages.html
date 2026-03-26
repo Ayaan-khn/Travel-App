@@ -179,6 +179,44 @@
             transform: scale(1.05);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
+
+        /* Light blue theme overrides */
+        .conversation-card:hover {
+            background: #eef5ff;
+        }
+        .conversation-time,
+        .conversation-preview,
+        .message-time,
+        .chat-empty {
+            color: #5d7693;
+            opacity: 1;
+        }
+        .chat-view {
+            background: linear-gradient(180deg, #f8fbff 0%, #e8f2ff 100%);
+        }
+        .chat-header,
+        .chat-input-container {
+            background: rgba(255,255,255,0.95);
+            border-color: rgba(29,111,220,0.12);
+        }
+        .chat-back-btn {
+            color: var(--primary);
+        }
+        .chat-participant-name {
+            color: #12304f;
+        }
+        .message.received .message-bubble {
+            background: #eef5ff;
+            color: #12304f;
+        }
+        .chat-input {
+            background: white;
+            color: #12304f;
+            border: 1px solid rgba(29,111,220,0.14);
+        }
+        .chat-input::placeholder {
+            color: #5d7693;
+        }
     </style>
 </head>
 
@@ -200,8 +238,8 @@
             <div style="padding: 0 20px 16px;">
                 <input type="text" placeholder="Search conversations..." 
                        onkeyup="searchConversations(this.value)"
-                       style="width: 100%; padding: 12px 16px; border-radius: 12px; border: none; 
-                              background: rgba(255,255,255,0.2); color: white; outline: none;
+                       style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(29,111,220,0.14); 
+                              background: white; color: #12304f; outline: none;
                               font-size: 14px;">
             </div>
 
@@ -254,6 +292,7 @@
         </a>
     </nav>
 
+    <script src="../js/runtime-config.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/messages.js"></script>
 </body>

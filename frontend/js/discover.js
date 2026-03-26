@@ -505,10 +505,16 @@ function joinExperience(id) {
     const exp = experiences.find(e => e.id === id);
     if (!joinedExperiences.includes(id)) {
         joinedExperiences.push(id);
-        if (exp) exp.participants++;
+        if (exp) {
+            if (typeof exp.participants_count === 'number') {
+                exp.participants_count += 1;
+            } else {
+                exp.participants = (exp.participants || 0) + 1;
+            }
+        }
         saveData();
         renderFeed();
-        startConversation(exp?.creator || {name: 'Host', photo: 'https://i.pravatar.cc/150?img=1'});
+        startConversation(getConversationUser(exp));
         showToast(`✅ Joined "${exp?.title}"! Chat opened.`);
     }
 }
@@ -516,7 +522,7 @@ function joinExperience(id) {
 function chatHost(id, hostName) {
     const experiences = realExperiences.length > 0 ? realExperiences : sampleExperiences;
     const exp = experiences.find(e => e.id === id);
-    startConversation(exp?.creator || {name: 'Host', photo: 'https://i.pravatar.cc/150?img=1'});
+    startConversation(getConversationUser(exp));
 }
 
 function saveExperience(id) {
@@ -557,6 +563,17 @@ function readLegend(id) {
     window.location.href = 'legends.html';
 }
 
+function getConversationUser(experience) {
+    if (!experience) {
+        return { name: 'Host', photo: 'https://i.pravatar.cc/150?img=1' };
+    }
+
+    return {
+        name: experience.creator_name || experience.creator?.name || 'Host',
+        photo: experience.photo_url || experience.creator?.photo || 'https://i.pravatar.cc/150?img=1'
+    };
+}
+
 // Start conversation with user
 function startConversation(user) {
     let conversations = JSON.parse(localStorage.getItem('conversations')) || [];
@@ -570,7 +587,7 @@ function startConversation(user) {
             id: Date.now(),
             participantId: user.name,
             participantName: user.name,
-            participantPhoto: user.photo || 'https://i.pravatar.cc/150?img=1',
+            participantPhoto: user.photo || user.photo_url || 'https://i.pravatar.cc/150?img=1',
             messages: [],
             lastMessage: '',
             lastMessageTime: Date.now()

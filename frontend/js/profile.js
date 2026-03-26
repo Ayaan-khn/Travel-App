@@ -549,8 +549,13 @@ function addXP(amount) {
 // ================= MODAL FUNCTIONS =================
 let currentEditCallback = null;
 let currentSelectionCallback = null;
+let editModalsBound = false;
+let profileMenuBound = false;
 
 function setupEditModals() {
+    if (editModalsBound) return;
+    editModalsBound = true;
+
     // Edit modal
     document.getElementById("editModalClose")?.addEventListener("click", closeEditModal);
     document.getElementById("editModalCancel")?.addEventListener("click", closeEditModal);
@@ -617,6 +622,9 @@ function closeSelectionModal() {
 
 // ================= DROPDOWN MENU =================
 function setupMenu() {
+    if (profileMenuBound) return;
+    profileMenuBound = true;
+
 
     const menuBtn = document.getElementById("pfpMenuBtn");
     const menu = document.getElementById("pfpMenu");

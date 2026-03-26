@@ -1,7 +1,7 @@
 // ================= SHARED STORAGE & AUTH =================
 
 // API Base URL
-const API_BASE = "http://localhost:8001/api";
+const API_BASE = window.TRAVELSYNC_API_BASE || "http://localhost:8000/api";
 
 // Store token
 let authToken = localStorage.getItem("authToken") || null;
@@ -34,6 +34,23 @@ async function apiRequest(endpoint, method = "GET", data = null) {
     }
     
     return response.json();
+}
+
+function isNetworkError(error) {
+    return error instanceof TypeError;
+}
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function escapeAttribute(value) {
+    return escapeHtml(value);
 }
 
 // ================= AUTH FUNCTIONS =================
@@ -101,9 +118,11 @@ async function loginAPI(email, password) {
             return { success: true, user: response.user };
         }
     } catch (error) {
-        // Fallback to localStorage if API is not running
-        console.log("API not available, using localStorage");
-        return loginLocal(email, password);
+        if (isNetworkError(error)) {
+            console.log("API not available, using localStorage");
+            return loginLocal(email, password);
+        }
+        throw error;
     }
 }
 
@@ -128,9 +147,11 @@ async function registerAPI(email, username, password, name) {
             return { success: true };
         }
     } catch (error) {
-        // Fallback to localStorage if API is not running
-        console.log("API not available, using localStorage");
-        return registerLocal(email, username, password, name);
+        if (isNetworkError(error)) {
+            console.log("API not available, using localStorage");
+            return registerLocal(email, username, password, name);
+        }
+        throw error;
     }
 }
 

@@ -1084,3 +1084,108 @@
 .selection-option:hover .selection-option-check {
     opacity: 1;
 }
+
+/* ================= LIGHT BLUE THEME OVERRIDES ================= */
+
+.profile-container,
+.profile-section,
+.travel-stats-section,
+.reviews-section,
+.upcoming-trips-section,
+.upcoming-trips-section .trip-card,
+.review-card,
+.stat-card {
+    background: rgba(255, 255, 255, 0.96);
+    color: #12304f;
+    border: 1px solid rgba(29, 111, 220, 0.1);
+    box-shadow: 0 14px 36px rgba(29, 111, 220, 0.12);
+}
+
+.profile-nav .nav-link,
+.profile-nav .logout-btn,
+.achievements-link,
+.edit-btn,
+.editable-field:hover,
+.trust-badge,
+.language-tag,
+.travel-status-selector,
+.status-option,
+.edit-modal-footer .btn-secondary {
+    background: #eef5ff;
+    color: #1d6fdc;
+    border-color: rgba(29, 111, 220, 0.14);
+}
+
+.profile-nav .nav-link:hover,
+.profile-nav .logout-btn:hover,
+.achievements-link:hover,
+.edit-btn:hover,
+.trust-badge:hover,
+.status-option:hover,
+.edit-modal-footer .btn-secondary:hover {
+    background: #ddeeff;
+}
+
+.profile-username,
+.section-title,
+.stat-value,
+.stat-number,
+.reviewer-name {
+    color: #12304f;
+    text-shadow: none;
+}
+
+.profile-bio,
+.profile-meta,
+.item-label,
+.travel-stat .stat-label,
+.rating-text,
+.review-date,
+.review-text,
+.trip-dates,
+.xp-bar-label,
+.menu-close {
+    color: #5d7693;
+    opacity: 1;
+}
+
+.banner {
+    background: linear-gradient(135deg, #dcecff, #8ec1ff);
+}
+
+.banner-overlay {
+    background: linear-gradient(180deg, transparent 45%, rgba(18, 48, 79, 0.14) 100%);
+}
+
+.pfp-menu,
+.edit-modal-content,
+.selection-modal-content,
+.crop-modal-content {
+    background: rgba(255, 255, 255, 0.98);
+    color: #12304f;
+    border: 1px solid rgba(29, 111, 220, 0.12);
+    box-shadow: 0 18px 40px rgba(29, 111, 220, 0.18);
+}
+
+.pfp-menu div,
+.selection-option {
+    color: #12304f;
+}
+
+.edit-modal-input {
+    background: #f8fbff;
+    color: #12304f;
+    border: 2px solid rgba(29, 111, 220, 0.12);
+}
+
+.edit-modal-input::placeholder {
+    color: #6d85a0;
+}
+
+.xp-bar-container {
+    background: #dfeeff;
+}
+
+.xp-bar-fill {
+    background: linear-gradient(90deg, #1d6fdc, #69a8ff);
+}

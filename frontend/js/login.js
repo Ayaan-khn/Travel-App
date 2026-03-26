@@ -16,24 +16,15 @@ async function initLogin() {
         submitBtn.disabled = true;
 
         try {
-            // Try API login first
             const result = await loginAPI(email, password);
             
             if (result.success) {
                 window.location.href = "discover.html";
             }
         } catch (error) {
-            // Fallback to localStorage
-            try {
-                const result = loginLocal(email, password);
-                if (result.success) {
-                    window.location.href = "discover.html";
-                }
-            } catch (err) {
-                alert("Invalid credentials.");
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
+            alert(error.message || "Invalid credentials.");
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         }
     });
 }

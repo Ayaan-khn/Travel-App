@@ -1,6 +1,6 @@
 @echo off
-echo Starting TravelSync server at http://localhost:8000
-echo Open: http://localhost:8000/frontend/html/mainpage.html
+echo Starting TravelSync frontend at http://localhost:5500
+echo Open: http://localhost:5500/mainpage.html
 echo.
 cd /d "%~dp0frontend\html"
-python -m http.server 8000
+python -m http.server 5500

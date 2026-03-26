@@ -9,10 +9,7 @@
 </head>
 
 <body>
-    <!-- Page Content Wrapper -->
     <div class="page-content">
-        
-        <!-- Top Bar -->
         <div class="top-bar">
             <div class="top-bar-left">
                 <h1 class="brand-title">TravelSync</h1>
@@ -21,31 +18,25 @@
                     <span id="currentLocation">New York</span>
                 </div>
             </div>
-<div class="top-bar-right">
+            <div class="top-bar-right">
                 <button class="icon-btn" onclick="window.location.href='map.html'" title="Map">🗺️</button>
                 <button class="icon-btn" onclick="openSearch()">🔍</button>
                 <button class="icon-btn" onclick="openFilters()">⚙️</button>
             </div>
         </div>
 
-        <!-- Tab Switcher -->
         <div class="tab-switcher">
-            <button class="tab-btn active" data-tab="pictures" onclick="switchTab('pictures')">📷 Pictures</button>
             <button class="tab-btn" data-tab="people" onclick="switchTab('people')">👥 People</button>
-            <button class="tab-btn" data-tab="experiences" onclick="switchTab('experiences')">✨ Experiences</button>
+            <button class="tab-btn active" data-tab="experiences" onclick="switchTab('experiences')">✨ Experiences</button>
             <button class="tab-btn" data-tab="nearby" onclick="switchTab('nearby')">📍 Nearby</button>
             <button class="tab-btn" data-tab="trending" onclick="switchTab('trending')">🔥 Trending</button>
         </div>
 
-        <!-- Main Feed -->
         <div class="feed-container" id="feedContainer">
-            <!-- Cards will be dynamically inserted here -->
         </div>
 
-        <!-- Floating Action Button -->
         <button class="fab-btn" onclick="showCreateExperienceModal()" title="Create Experience">+</button>
 
-        <!-- Bottom Navigation -->
         <nav class="bottom-nav">
             <a href="discover.html" class="nav-item active">
                 <span class="nav-icon">🌟</span>
@@ -68,9 +59,9 @@
                 <span>Profile</span>
             </a>
         </nav>
-
     </div>
 
+    <script src="../js/runtime-config.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/discover.js"></script>
 </body>

@@ -6,6 +6,7 @@ psycopg2-binary
 python-jose
 passlib[bcrypt]
 pydantic
+email-validator
 python-multipart
 geoalchemy2
 redis

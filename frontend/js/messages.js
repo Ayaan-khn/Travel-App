@@ -49,14 +49,14 @@ function renderConversations() {
         html += `
             <div class="card conversation-card" onclick="openConversation(${conv.id})">
                 <div class="conversation-avatar">
-                    <img src="${conv.participantPhoto}" alt="${conv.participantName}">
+                    <img src="${escapeAttribute(conv.participantPhoto || 'https://i.pravatar.cc/150?img=1')}" alt="${escapeAttribute(conv.participantName)}">
                 </div>
                 <div class="conversation-info">
                     <div class="conversation-header">
-                        <span class="conversation-name">${conv.participantName}</span>
+                        <span class="conversation-name">${escapeHtml(conv.participantName)}</span>
                         <span class="conversation-time">${time}</span>
                     </div>
-                    <div class="conversation-preview">${conv.lastMessage || 'No messages yet'}</div>
+                    <div class="conversation-preview">${escapeHtml(conv.lastMessage || 'No messages yet')}</div>
                 </div>
             </div>
         `;
@@ -97,7 +97,7 @@ function renderChatView() {
     if (!activeConversation) return;
     
     document.getElementById('chatParticipantName').textContent = activeConversation.participantName;
-    document.getElementById('chatParticipantPhoto').src = activeConversation.participantPhoto;
+    document.getElementById('chatParticipantPhoto').src = activeConversation.participantPhoto || 'https://i.pravatar.cc/150?img=1';
     
     const messagesContainer = document.getElementById('chatMessages');
     messagesContainer.innerHTML = '';
@@ -107,7 +107,7 @@ function renderChatView() {
             const isMe = msg.sender === 'me';
             messagesContainer.innerHTML += `
                 <div class="message ${isMe ? 'sent' : 'received'}">
-                    <div class="message-bubble">${msg.text}</div>
+                    <div class="message-bubble">${escapeHtml(msg.text)}</div>
                     <div class="message-time">${formatTime(msg.time)}</div>
                 </div>
             `;
@@ -115,7 +115,7 @@ function renderChatView() {
     } else {
         messagesContainer.innerHTML = `
             <div class="chat-empty">
-                <p>Start your conversation with ${activeConversation.participantName}!</p>
+                <p>Start your conversation with ${escapeHtml(activeConversation.participantName)}!</p>
             </div>
         `;
     }
@@ -252,14 +252,14 @@ function searchConversations(query) {
             html += `
                 <div class="card conversation-card" onclick="openConversation(${conv.id})">
                     <div class="conversation-avatar">
-                        <img src="${conv.participantPhoto}" alt="${conv.participantName}">
+                        <img src="${escapeAttribute(conv.participantPhoto || 'https://i.pravatar.cc/150?img=1')}" alt="${escapeAttribute(conv.participantName)}">
                     </div>
                     <div class="conversation-info">
                         <div class="conversation-header">
-                            <span class="conversation-name">${conv.participantName}</span>
+                            <span class="conversation-name">${escapeHtml(conv.participantName)}</span>
                             <span class="conversation-time">${time}</span>
                         </div>
-                        <div class="conversation-preview">${conv.lastMessage || 'No messages yet'}</div>
+                        <div class="conversation-preview">${escapeHtml(conv.lastMessage || 'No messages yet')}</div>
                     </div>
                 </div>
             `;
@@ -270,7 +270,7 @@ function searchConversations(query) {
 
 // Send on Enter key
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && document.activeElement?.id === 'messageInput') {
         sendMessage();
     }
 });

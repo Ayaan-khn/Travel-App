@@ -28,24 +28,15 @@ async function initRegister() {
         submitBtn.disabled = true;
 
         try {
-            // Try API register first
             const result = await registerAPI(email, username, password, name);
             
             if (result.success) {
                 window.location.href = "discover.html";
             }
         } catch (error) {
-            // Fallback to localStorage
-            try {
-                const result = registerLocal(email, username, password, name);
-                if (result.success) {
-                    window.location.href = "discover.html";
-                }
-            } catch (err) {
-                alert(err.message || "Registration failed. Please try again.");
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
+            alert(error.message || "Registration failed. Please try again.");
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         }
     });
 }
